@@ -5,6 +5,8 @@
 
 ![image](https://github.com/user-attachments/assets/15b1171e-5057-46a5-a681-e8a82b47b98b)
 
+**Assigned Primary key, Foreign key, Unique key and updated the required datatypes for the updated table datasets:**
+
 **ER Diagram to show the relationship between the table datasets:**
 
 ![ER Diagram](https://github.com/user-attachments/assets/ada697fe-7e01-4a05-a400-1250a1f1b2a2)
