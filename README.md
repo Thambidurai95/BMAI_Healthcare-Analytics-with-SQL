@@ -1,6 +1,14 @@
 # BMAI_Healthcare-Analytics-with-SQL
 ![Healthcare Logo](https://github.com/user-attachments/assets/e9923d67-2577-4aea-a639-ab4f49256f8c)
 
+**Creating database and importing table datasets:**
+
+![image](https://github.com/user-attachments/assets/15b1171e-5057-46a5-a681-e8a82b47b98b)
+
+**ER Diagram to show the relationship between the table datasets:**
+
+![ER Diagram](https://github.com/user-attachments/assets/ada697fe-7e01-4a05-a400-1250a1f1b2a2)
+
 **SQL Tasks:**
 
 **Inner and Equi Joins
