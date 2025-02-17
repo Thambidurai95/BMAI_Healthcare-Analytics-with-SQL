@@ -25,10 +25,68 @@ select distinct name as doctors_name,specialization,count(diagnosis) as Total_di
 right join doctors on diagnoses.doctor_id=doctors.doctor_id
 group by doctors_name,specialization;
 
+**Full Join for Overlapping Data
+Task: Write a query to identify mismatches between the appointments and diagnoses tables. Include all appointments and diagnoses with their corresponding patient and doctor details.**
 
+select appointment_id,appointments.Patient_id,appointments.doctor_id, null as diagnosis_id, null as diagnosis from appointments
+left join patients on appointments.Patient_id=patients.Patient_id
+left join doctors on appointments.doctor_id=doctors.doctor_id
+left join diagnoses on appointments.Patient_id=diagnoses.Patient_id and appointments.doctor_id=diagnoses.doctor_id
+where diagnoses.diagnosis_id is null
+union
+select null as appointment_id,diagnoses.Patient_id,diagnoses.doctor_id, diagnoses.diagnosis_id,diagnoses.diagnosis from diagnoses
+left join patients on diagnoses.Patient_id=patients.Patient_id
+left join doctors on diagnoses.doctor_id=doctors.doctor_id
+left join appointments on diagnoses.Patient_id=appointments.Patient_id and diagnoses.doctor_id=appointments.doctor_id
+where appointments.appointment_id is null;
 
+**Window Functions (Ranking and Aggregation)
+Task: For each doctor, rank their patients based on the number of appointments in descending order.**
 
+select doctor_id,patient_id,count(patient_id) as Total_appointments,rank()
+over (order by count(patient_id) desc) as Patient_ranks from appointments
+group by doctor_id,patient_id;
 
+**Conditional Expressions
+Task: Write a query to categorize patients by age group (e.g., 18-30, 31-50, 51+). Count the number of patients in each age group.**
+
+select
+	case
+		when age >='18' and age <='30' then '18_30'
+		when age >='31' and age <='50' then '31_50'
+		when age >='51' and age <='70' then '51_70'
+		when age >='71' and age <='90' then '71_90'
+	else 'no_group'
+	end as age_group, count(patient_id) as Total_patients_count
+from patients group by age_group;
+
+**Numeric and String Functions
+Task: Retrieve a list of patients whose contact numbers end with "1234" and display their names in uppercase.**
+
+select upper(name) as Patients_name from patients where contact_number like '%1234';
+
+**Subqueries for Filtering
+Task: Find patients who have only been prescribed "Insulin" in any of their diagnoses.**
+
+select distinct patients.Patient_id from patients where patients.Patient_id in (select distinct diagnoses.Patient_id from diagnoses 
+join medications on diagnoses.diagnosis_id=medications.diagnosis_id where medication_name = 'Insulin')
+and patients.Patient_id not in 
+(select distinct diagnoses.Patient_id from diagnoses join medications on diagnoses.diagnosis_id=medications.diagnosis_id
+where medication_name != 'Insulin');
+
+**Date and Time Functions
+Task: Calculate the average duration (in days) for which medications are prescribed for each diagnosis.**
+
+select diagnoses.diagnosis_id,diagnosis,medication_name,avg(datediff(end_date,start_date)) as average_duration_days from medications
+join diagnoses on medications.diagnosis_id=diagnoses.diagnosis_id
+group by diagnoses.diagnosis_id,medication_name;
+
+**Complex Joins and Aggregation
+Task: Write a query to identify the doctor who has attended the most unique patients. Include the doctor’s name, specialization, and the count of unique patients.**
+
+select name as doctors_name,specialization,count(distinct patient_id) as unique_patients_count from doctors
+inner join appointments on doctors.doctor_id=appointments.doctor_id
+group by doctors_name,specialization;
 
 
 
