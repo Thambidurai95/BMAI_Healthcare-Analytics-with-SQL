@@ -36,7 +36,10 @@ right join doctors on diagnoses.doctor_id=doctors.doctor_id
 group by doctors_name,specialization;
 
 **Full Join for Overlapping Data
-Task: Write a query to identify mismatches between the appointments and diagnoses tables. Include all appointments and diagnoses with their corresponding patient and doctor details.**
+Task: Write a query to identify mismatches between the appointments and diagnoses tablqes. Include all appointments and diagnoses with their corresponding patient and doctor details.**
+
+# Using Full join, couldn't receive the required output for this task.
+# Using Union of Left join and Right join method, received the required output.
 
 select appointment_id,appointments.Patient_id,appointments.doctor_id, null as diagnosis_id, null as diagnosis from appointments
 left join patients on appointments.Patient_id=patients.Patient_id
