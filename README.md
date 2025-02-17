@@ -5,7 +5,9 @@
 
 ![image](https://github.com/user-attachments/assets/15b1171e-5057-46a5-a681-e8a82b47b98b)
 
-# Assigned Primary key, Foreign key, Unique key and updated the required datatypes for the updated table datasets.
+# Assigned Primary key, Foreign key, Unique key and updated the required datatypes for the updated table datasets using the below-mentioned types of SQL and constraints.
+
+* **alter table | modify column | add constraint | add primary key | add foreign key | unique | references**
 
 # ER Diagram to show the relationship between the table datasets:
 
