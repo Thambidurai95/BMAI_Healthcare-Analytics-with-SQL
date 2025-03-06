@@ -24,7 +24,7 @@ inner join doctors on appointments.doctor_id=doctors.doctor_id
 where status = 'Completed';
 
 # Left Join with Null Handling
-**Task: Retrieve all patients who have never had an appointment. Include their name, contact details, and address in the output.****
+**Task: Retrieve all patients who have never had an appointment. Include their name, contact details, and address in the output.**
 
 select name as patients_name,contact_number,address from patients
 left join appointments on patients.patient_id=appointments.patient_id
